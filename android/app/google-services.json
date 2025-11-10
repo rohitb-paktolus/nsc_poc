@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "602385663611",
+    "project_id": "frequent-flow",
+    "storage_bucket": "frequent-flow.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:602385663611:android:2404c68e2c7b48605f84de",
+        "android_client_info": {
+          "package_name": "com.frequent_flow.frequent_flow"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFLl8ZLRORYPOPnoE5kdbRXKYKtIfZoKs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

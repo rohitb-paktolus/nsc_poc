@@ -1,0 +1,84 @@
+name: frequent_flow
+description: "A Flutter-based mobile application designed to streamline access to frequently used modules and functionalities. FrequentFlow offers a user-friendly interface, modular design, and essential tools to enhance productivity and user experience. Ideal for users looking for quick, reliable, and efficient access to everyday functionalities."
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.3.4 <4.0.0'
+dependencies:
+  flutter:
+    sdk: flutter
+
+  flutter_google_maps:
+    path: /Users/rohitbarge/Documents/New Topics/frequent flow modules
+
+  multi_auth:
+    path: /Users/rohitbarge/Documents/New Topics/frequent_flow_multi_auth
+
+  flutter_permissions:
+    path: /Users/rohitbarge/Documents/New Topics/flutter-permissions
+
+  cupertino_icons: ^1.0.6
+  flutter_svg: ^2.0.7
+  shared_preferences: ^2.2.0
+  flutter_timezone: ^1.0.8
+  country_picker: ^2.0.20
+  country_code_picker: ^3.0.0
+  geolocator: ^13.0.2
+#  google_sign_in: ^6.2.2
+  google_maps_flutter: ^2.10.0
+  firebase_core: ^3.8.0
+  firebase_messaging: ^15.1.5
+  dio: ^5.7.0
+  flutter_local_notifications: ^18.0.1
+  flutter_bloc: ^8.1.6
+  equatable: ^2.0.7
+  pinput: ^4.0.0
+  local_auth: ^2.3.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^3.0.0
+
+flutter:
+
+  uses-material-design: true
+  assets:
+    - assets/icons/
+    - assets/images/
+
+  fonts:
+    - family: DMSans
+      fonts:
+        - asset: fonts/DMSans-Black.ttf
+        - asset: fonts/DMSans-BlackItalic.ttf
+        - asset: fonts/DMSans-Bold.ttf
+        - asset: fonts/DMSans-BoldItalic.ttf
+        - asset: fonts/DMSans-ExtraBold.ttf
+        - asset: fonts/DMSans-ExtraBoldItalic.ttf
+        - asset: fonts/DMSans-ExtraLight.ttf
+        - asset: fonts/DMSans-ExtraLightItalic.ttf
+        - asset: fonts/DMSans-Italic.ttf
+        - asset: fonts/DMSans-Light.ttf
+        - asset: fonts/DMSans-LightItalic.ttf
+        - asset: fonts/DMSans-Medium.ttf
+        - asset: fonts/DMSans-MediumItalic.ttf
+        - asset: fonts/DMSans-Regular.ttf
+        - asset: fonts/DMSans-SemiBold.ttf
+        - asset: fonts/DMSans-SemiBoldItalic.ttf
+        - asset: fonts/DMSans-Thin.ttf
+        - asset: fonts/DMSans-ThinItalic.ttf
+
+    - family: Inter
+      fonts:
+        - asset: fonts/Inter-Black.ttf
+        - asset: fonts/Inter-Bold.ttf
+        - asset: fonts/Inter-ExtraBold.ttf
+        - asset: fonts/Inter-ExtraLight.ttf
+        - asset: fonts/Inter-Light.ttf
+        - asset: fonts/Inter-Medium.ttf
+        - asset: fonts/Inter-Regular.ttf
+        - asset: fonts/Inter-SemiBold.ttf
+        - asset: fonts/Inter-Thin.ttf

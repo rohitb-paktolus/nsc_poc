@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyC7P0o7YW8Vhtdh5rpD8Ts-gW7-05_irck</string>
+	<key>GCM_SENDER_ID</key>
+	<string>602385663611</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.frequentflow.frequentFlow</string>
+	<key>PROJECT_ID</key>
+	<string>frequent-flow</string>
+	<key>STORAGE_BUCKET</key>
+	<string>frequent-flow.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:602385663611:ios:19e29a7fbef6a72b5f84de</string>
+</dict>
+</plist>
