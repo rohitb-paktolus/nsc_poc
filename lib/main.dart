@@ -18,7 +18,6 @@ import 'package:frequent_flow/onboarding/registration_bloc/registration_bloc.dar
 import 'package:frequent_flow/onboarding/repository/forgot_password_repository.dart';
 import 'package:frequent_flow/onboarding/repository/registration_repository.dart';
 import 'package:frequent_flow/onboarding/screens/forgot_password.dart';
-import 'package:frequent_flow/permissions/permissions_screen.dart';
 import 'package:frequent_flow/push_notifications/push_notifications_screen.dart';
 import 'package:frequent_flow/utils/prefs.dart';
 import 'package:frequent_flow/utils/route.dart';
@@ -134,12 +133,6 @@ class MyApp extends StatelessWidget {
             return MaterialPageRoute(
               builder: (context) {
                 return const SafeArea(child: MapSampleScreen());
-              },
-            );
-          case ROUT_PERMISSION:
-            return MaterialPageRoute(
-              builder: (context) {
-                return const SafeArea(child: PermissionsScreen());
               },
             );
           case ROUT_PUSH_NOTIFICATION:
