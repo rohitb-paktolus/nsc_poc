@@ -10,7 +10,7 @@ dependencies:
     sdk: flutter
 
   flutter_google_maps:
-    path: /Users/shankarbalasubramaniam/Desktop/flutter/flutter_google_maps
+    path: /Users/rohitbarge/Documents/New Topics/frequent flow modules
 
   cupertino_icons: ^1.0.6
   flutter_svg: ^2.0.7
@@ -30,7 +30,6 @@ dependencies:
   pinput: ^4.0.0
   local_auth: ^2.3.0
   flutter_dotenv: ^6.0.0
-  video_player: ^2.10.0
 
 dev_dependencies:
   flutter_test:
