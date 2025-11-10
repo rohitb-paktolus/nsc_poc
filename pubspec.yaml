@@ -10,18 +10,18 @@ dependencies:
     sdk: flutter
 
   flutter_google_maps:
-    path: /Users/rohitbarge/Documents/New Topics/frequent flow modules
+    path: /Users/shankarbalasubramaniam/Desktop/flutter/flutter_google_maps
 
   multi_auth:
-    path: /Users/rohitbarge/Documents/New Topics/frequent_flow_multi_auth
+    path: /Users/shankarbalasubramaniam/Desktop/flutter/multi_auth
 
   flutter_permissions:
-    path: /Users/rohitbarge/Documents/New Topics/flutter-permissions
+    path: /Users/shankarbalasubramaniam/Desktop/flutter/flutter_permissions
 
   cupertino_icons: ^1.0.6
   flutter_svg: ^2.0.7
   shared_preferences: ^2.2.0
-  flutter_timezone: ^1.0.8
+  flutter_timezone: ^5.0.1
   country_picker: ^2.0.20
   country_code_picker: ^3.0.0
   geolocator: ^13.0.2
@@ -30,11 +30,12 @@ dependencies:
   firebase_core: ^3.8.0
   firebase_messaging: ^15.1.5
   dio: ^5.7.0
-  flutter_local_notifications: ^18.0.1
+  flutter_local_notifications: ^19.5.0
   flutter_bloc: ^8.1.6
   equatable: ^2.0.7
   pinput: ^4.0.0
   local_auth: ^2.3.0
+  flutter_dotenv: ^6.0.0
 
 dev_dependencies:
   flutter_test:
@@ -48,6 +49,7 @@ flutter:
   assets:
     - assets/icons/
     - assets/images/
+    - .env
 
   fonts:
     - family: DMSans

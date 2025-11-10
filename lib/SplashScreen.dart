@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:frequent_flow/utils/pref_key.dart';
 import 'package:frequent_flow/utils/prefs.dart';
-import 'package:frequent_flow/widgets/custom_text.dart';
 
 import '../../utils/route.dart';
 

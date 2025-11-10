@@ -46,6 +46,6 @@ Future<void> showExitConfirmationDialog(BuildContext context, String alertMsg,
 
 
 Future<String> getCurrentTimezoneName() async{
-  final String currentTimezone = await FlutterTimezone.getLocalTimezone();
-  return currentTimezone;
+  final TimezoneInfo currentTimezone = await FlutterTimezone.getLocalTimezone();
+  return currentTimezone.identifier;
 }

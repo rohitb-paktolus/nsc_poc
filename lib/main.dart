@@ -20,7 +20,6 @@ import 'package:frequent_flow/onboarding/repository/registration_repository.dart
 import 'package:frequent_flow/onboarding/screens/forgot_password.dart';
 import 'package:frequent_flow/permissions/permissions_screen.dart';
 import 'package:frequent_flow/push_notifications/push_notifications_screen.dart';
-import 'package:frequent_flow/social_auth/social_login_screen.dart';
 import 'package:frequent_flow/utils/prefs.dart';
 import 'package:frequent_flow/utils/route.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -31,6 +30,7 @@ import 'authentication/screens/login_email_screen.dart';
 import 'dashboard/dashboard_screen.dart';
 import 'map/map_integration.dart';
 import 'onboarding/screens/registration.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();
 
@@ -38,7 +38,7 @@ final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  await dotenv.load(fileName: ".env");
   const initializationSettingsAndroid =
       AndroidInitializationSettings('@mipmap/ic_launcher');
   const DarwinInitializationSettings initializationSettingsIOS =
@@ -134,12 +134,6 @@ class MyApp extends StatelessWidget {
             return MaterialPageRoute(
               builder: (context) {
                 return const SafeArea(child: MapSampleScreen());
-              },
-            );
-          case ROUT_SOCIAL_MEDIA_INTEGRATION:
-            return MaterialPageRoute(
-              builder: (context) {
-                return const SafeArea(child: SocialLogin());
               },
             );
           case ROUT_PERMISSION:
