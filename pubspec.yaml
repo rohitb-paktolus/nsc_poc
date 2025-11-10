@@ -12,12 +12,6 @@ dependencies:
   flutter_google_maps:
     path: /Users/shankarbalasubramaniam/Desktop/flutter/flutter_google_maps
 
-  multi_auth:
-    path: /Users/shankarbalasubramaniam/Desktop/flutter/multi_auth
-
-  flutter_permissions:
-    path: /Users/shankarbalasubramaniam/Desktop/flutter/flutter_permissions
-
   cupertino_icons: ^1.0.6
   flutter_svg: ^2.0.7
   shared_preferences: ^2.2.0
@@ -36,6 +30,7 @@ dependencies:
   pinput: ^4.0.0
   local_auth: ^2.3.0
   flutter_dotenv: ^6.0.0
+  video_player: ^2.10.0
 
 dev_dependencies:
   flutter_test:

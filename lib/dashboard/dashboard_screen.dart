@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:frequent_flow/utils/prefs.dart';
 import 'package:frequent_flow/utils/route.dart';
@@ -13,7 +12,7 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
-  final List<String> features = ["Map Integration", "Change Password"];
+  final List<String> features = ["Map Integration", "Change Password", "Video"];
 
   void _onLogOut() {
     Prefs.clear();
@@ -46,6 +45,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         break;
                       case "Change Password":
                         Navigator.of(context).pushNamed(ROUT_CHANGE_PASSWORD);
+                        break;
+                      case "Video":
+                        Navigator.of(context).pushNamed(ROUTE_VIDEO);
                         break;
                     }
                   },

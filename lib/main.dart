@@ -18,11 +18,11 @@ import 'package:frequent_flow/onboarding/registration_bloc/registration_bloc.dar
 import 'package:frequent_flow/onboarding/repository/forgot_password_repository.dart';
 import 'package:frequent_flow/onboarding/repository/registration_repository.dart';
 import 'package:frequent_flow/onboarding/screens/forgot_password.dart';
-import 'package:frequent_flow/permissions/permissions_screen.dart';
 import 'package:frequent_flow/push_notifications/push_notifications_screen.dart';
 import 'package:frequent_flow/utils/prefs.dart';
 import 'package:frequent_flow/utils/route.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:frequent_flow/video_player/video_player_screen.dart';
 import 'authentication/screens/login_option_screen.dart';
 import 'firebase_options.dart';
 import 'SplashScreen.dart';
@@ -136,12 +136,6 @@ class MyApp extends StatelessWidget {
                 return const SafeArea(child: MapSampleScreen());
               },
             );
-          case ROUT_PERMISSION:
-            return MaterialPageRoute(
-              builder: (context) {
-                return const SafeArea(child: PermissionsScreen());
-              },
-            );
           case ROUT_PUSH_NOTIFICATION:
             return MaterialPageRoute(
               builder: (context) {
@@ -164,6 +158,16 @@ class MyApp extends StatelessWidget {
             return MaterialPageRoute(
               builder: (context) {
                 return const SafeArea(child: BiometricAuthScreen());
+              },
+            );
+          case ROUTE_VIDEO:
+            return MaterialPageRoute(
+              builder: (context) {
+                return const SafeArea(
+                  child: VideoPlayerScreen(
+                      source:
+                          "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"),
+                );
               },
             );
         }
