@@ -25,6 +25,22 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
+def flutterEnv = new Properties()
+def envFile = rootProject.file("../.env")
+println("ENV FILE PATH: " + envFile.getAbsolutePath())
+if (envFile.exists()) {
+    envFile.withInputStream { stream ->
+        flutterEnv.load(stream)
+    }
+} else {
+    println(".env file does not exist!")
+}
+
+// Debug print all keys loaded
+flutterEnv.each { key, value ->
+    println("env key: $key, value: $value")
+}
+
 android {
     namespace "com.frequent_flow.frequent_flow"
     compileSdk flutter.compileSdkVersion
@@ -33,6 +49,7 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+        coreLibraryDesugaringEnabled true
     }
 
     kotlinOptions {
@@ -52,6 +69,13 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+
+        def mapsApiKey = flutterEnv.getProperty("MAPS_API_KEY") ?: ""
+        if (mapsApiKey.isEmpty()) {
+            throw new GradleException("MAPS_API_KEY is not set in .env file")
+        }
+
+        resValue "string", "maps_api_key", mapsApiKey
     }
 
     buildTypes {
@@ -67,4 +91,6 @@ flutter {
     source '../..'
 }
 
-dependencies {}
+dependencies {
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.4'
+}
