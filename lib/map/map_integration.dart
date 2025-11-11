@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_google_maps/flutter_google_maps.dart';
+import 'package:frequent_flow/map/flutter_map.dart';
 
 class MapSampleScreen extends StatefulWidget {
   const MapSampleScreen({super.key});
