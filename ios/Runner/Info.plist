@@ -73,6 +73,8 @@
     <string>fab22a117d635471959663f6c110b123</string>
     <key>FacebookDisplayName</key>
     <string>Frequent Flow</string>
+    <key>NSCameraUsageDescription</key>
+    <string>This app needs camera access to scan QR codes</string>
     <key>LSApplicationQueriesSchemes</key>
     <array>
       <string>fbapi</string>

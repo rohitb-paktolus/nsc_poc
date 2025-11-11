@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:frequent_flow/utils/prefs.dart';
 import 'package:frequent_flow/utils/route.dart';
@@ -13,7 +12,12 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
-  final List<String> features = ["Map Integration", "Change Password"];
+  final List<String> features = [
+    "Map Integration",
+    "Change Password",
+    "Generate QR",
+    "Scan QR"
+  ];
 
   void _onLogOut() {
     Prefs.clear();
@@ -46,6 +50,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         break;
                       case "Change Password":
                         Navigator.of(context).pushNamed(ROUT_CHANGE_PASSWORD);
+                        break;
+                      case "Generate QR":
+                        Navigator.of(context).pushNamed(ROUT_QR_CODE);
+                        break;
+                      case "Scan QR":
+                        Navigator.of(context).pushNamed(ROUT_SCAN_QR_CODE);
                         break;
                     }
                   },
