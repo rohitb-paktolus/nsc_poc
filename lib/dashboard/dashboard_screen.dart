@@ -13,6 +13,12 @@ class DashboardScreen extends StatefulWidget {
 
 class _DashboardScreenState extends State<DashboardScreen> {
   final List<String> features = ["Map Integration", "Change Password", "Video"];
+  final List<String> features = [
+    "Map Integration",
+    "Change Password",
+    "Generate QR",
+    "Scan QR"
+  ];
 
   void _onLogOut() {
     Prefs.clear();
@@ -48,6 +54,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         break;
                       case "Video":
                         Navigator.of(context).pushNamed(ROUTE_VIDEO);
+                      case "Generate QR":
+                        Navigator.of(context).pushNamed(ROUT_QR_CODE);
+                        break;
+                      case "Scan QR":
+                        Navigator.of(context).pushNamed(ROUT_SCAN_QR_CODE);
                         break;
                     }
                   },

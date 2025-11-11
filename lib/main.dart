@@ -16,6 +16,9 @@ import 'package:frequent_flow/onboarding/registration_bloc/registration_bloc.dar
 import 'package:frequent_flow/onboarding/repository/forgot_password_repository.dart';
 import 'package:frequent_flow/onboarding/repository/registration_repository.dart';
 import 'package:frequent_flow/onboarding/screens/forgot_password.dart';
+import 'package:frequent_flow/push_notifications/push_notifications_screen.dart';
+import 'package:frequent_flow/qr_code/generate_qr_code.dart';
+import 'package:frequent_flow/qr_code/scan_qr_code.dart';
 import 'package:frequent_flow/utils/prefs.dart';
 import 'package:frequent_flow/utils/route.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -140,6 +143,16 @@ class MyApp extends StatelessWidget {
                       source:
                           "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"),
                 );
+          case ROUT_QR_CODE:
+            return MaterialPageRoute(
+              builder: (context) {
+                return const SafeArea(child: GenerateQrCode());
+              },
+            );
+          case ROUT_SCAN_QR_CODE:
+            return MaterialPageRoute(
+              builder: (context) {
+                return const SafeArea(child: ScanQrCode());
               },
             );
         }

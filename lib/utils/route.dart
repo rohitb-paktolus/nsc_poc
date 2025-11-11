@@ -16,3 +16,5 @@ const String ROUT_PUSH_NOTIFICATION = "rout_push_notification";
 const String ROUT_SOCIAL_MEDIA_INTEGRATION = "rout_social_media_integration";
 const String ROUT_MAP_INTEGRATION = "rout_map_integration";
 const String ROUTE_VIDEO = "route_video";
+const String ROUT_QR_CODE = "rout_qr_code";
+const String ROUT_SCAN_QR_CODE = "rout_scan_code";

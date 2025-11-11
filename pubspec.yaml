@@ -26,6 +26,9 @@ dependencies:
   flutter_dotenv: ^6.0.0
   location: ^7.0.1
   video_player: ^2.10.0
+  qr_flutter: ^4.1.0
+  mobile_scanner: ^5.2.3  # For QR code scanning
+  permission_handler: ^11.3.1  # For camera permissions
 
 dev_dependencies:
   flutter_test:
