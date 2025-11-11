@@ -103,7 +103,6 @@ class _LoginMobileScreenState extends State<LoginMobileScreen> {
         clickLogin = true;
       });
       FocusScope.of(context).requestFocus(FocusNode());
-      String? fcmToken = Prefs.getString(FCM_TOKEN);
       Navigator.pushReplacementNamed(context, ROUT_DASHBOARD);
       LoginMobileDetails loginMobileDetails = LoginMobileDetails(
         phoneNumber: mobileController.text,

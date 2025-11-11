@@ -1,9 +1,7 @@
 import 'dart:io';
 
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:frequent_flow/authentication/login_email_bloc/login_bloc.dart';
 import 'package:frequent_flow/authentication/login_mobile_bloc/login_mobile_bloc.dart';
 import 'package:frequent_flow/authentication/repository/login_mobile_repository.dart';
@@ -18,7 +16,6 @@ import 'package:frequent_flow/onboarding/registration_bloc/registration_bloc.dar
 import 'package:frequent_flow/onboarding/repository/forgot_password_repository.dart';
 import 'package:frequent_flow/onboarding/repository/registration_repository.dart';
 import 'package:frequent_flow/onboarding/screens/forgot_password.dart';
-import 'package:frequent_flow/push_notifications/push_notifications_screen.dart';
 import 'package:frequent_flow/utils/prefs.dart';
 import 'package:frequent_flow/utils/route.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -34,28 +31,9 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();
 
-final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: ".env");
-  const initializationSettingsAndroid =
-      AndroidInitializationSettings('@mipmap/ic_launcher');
-  const DarwinInitializationSettings initializationSettingsIOS =
-      DarwinInitializationSettings();
-  const initializationSettings = InitializationSettings(
-    android: initializationSettingsAndroid,
-    iOS: initializationSettingsIOS,
-  );
-  await flutterLocalNotificationsPlugin.initialize(initializationSettings);
-
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  await FirebaseMessaging.instance.setAutoInitEnabled(true);
-  final fcmToken =
-      Platform.isAndroid ? await FirebaseMessaging.instance.getToken() : "";
-  print("FCMToken $fcmToken");
   await Prefs.init();
   runApp(
     MultiBlocProvider(
@@ -134,12 +112,6 @@ class MyApp extends StatelessWidget {
             return MaterialPageRoute(
               builder: (context) {
                 return const SafeArea(child: MapSampleScreen());
-              },
-            );
-          case ROUT_PUSH_NOTIFICATION:
-            return MaterialPageRoute(
-              builder: (context) {
-                return const SafeArea(child: PushNotificationsScreen());
               },
             );
           case ROUT_CHANGE_PASSWORD:
