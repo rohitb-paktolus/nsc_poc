@@ -12,6 +12,7 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
+  final List<String> features = ["Map Integration", "Change Password", "Video"];
   final List<String> features = [
     "Map Integration",
     "Change Password",
@@ -51,6 +52,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       case "Change Password":
                         Navigator.of(context).pushNamed(ROUT_CHANGE_PASSWORD);
                         break;
+                      case "Video":
+                        Navigator.of(context).pushNamed(ROUTE_VIDEO);
                       case "Generate QR":
                         Navigator.of(context).pushNamed(ROUT_QR_CODE);
                         break;
