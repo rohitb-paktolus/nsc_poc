@@ -26,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
       if (Prefs.getBool(LOGIN_FLAG)) {
         Navigator.pushReplacementNamed(context, ROUT_DASHBOARD);
       } else {
-        Navigator.pushReplacementNamed(context, ROUT_LOGIN_OPTION);
+        Navigator.pushReplacementNamed(context, ROUT_LOGIN_EMAIL);
       }
     });
   }
