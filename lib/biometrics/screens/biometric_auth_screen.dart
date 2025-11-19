@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:frequent_flow/utils/pref_key.dart';
+import 'package:frequent_flow/utils/prefs.dart';
 import 'package:frequent_flow/widgets/custom_alert.dart';
 import 'package:local_auth/local_auth.dart';
 
@@ -14,44 +16,35 @@ class BiometricAuthScreen extends StatefulWidget {
 
 class _BiometricAuthScreenState extends State<BiometricAuthScreen> {
   final LocalAuthentication auth = LocalAuthentication();
+  bool isBiometricsOn = false;
+  bool isBiometricsAvailable = false;
 
-  Future<void> _authenticate() async {
-    try {
-      // Check if the device supports biometrics
-      bool canAuthenticate =
-          await auth.canCheckBiometrics || await auth.isDeviceSupported();
-      final List<BiometricType> availableBiometrics =
-          await auth.getAvailableBiometrics();
+  @override
+  void initState() {
+    _checkBiometricsAvailability();
+    _loadBiometricState();
+    super.initState();
+  }
 
-      if (!canAuthenticate) {
-        _showAlert("Error",
-            "Biometric authentication is not available on this device.");
-        return;
-      }
+  Future<void> _checkBiometricsAvailability() async {
+    bool canCheckBiometrics =
+        await auth.isDeviceSupported() || await auth.canCheckBiometrics;
+    setState(() {
+      isBiometricsAvailable = canCheckBiometrics;
+    });
+  }
 
-      if (availableBiometrics.isNotEmpty) {
-        // Attempt to authenticate using biometrics
-        bool isAuthenticated = await auth.authenticate(
-          localizedReason: 'Authenticate to access the app',
-          options: const AuthenticationOptions(
-            stickyAuth: true,
-            biometricOnly: true,
-          ),
-        );
+  void _loadBiometricState() {
+    setState(() {
+      isBiometricsOn = Prefs.getBool(BIOMETRIC_FLAG);
+    });
+  }
 
-        if (isAuthenticated) {
-          _showAlert("Success", "You have successfully authenticated!");
-        } else {
-          _showAlert("Failed", "Authentication failed. Please try again.");
-        }
-      } else {
-        _showAlert("Alert", "No biometrics available");
-      }
-    } on PlatformException catch (e) {
-      _showAlert("Failed", "Authentication failed. Please try again.");
-    } catch (e) {
-      _showAlert("Error", "An error occurred: $e");
-    }
+  Future<void> _toggleBiometric(bool value) async {
+    setState(() {
+      isBiometricsOn = value;
+    });
+    await Prefs.setBool(BIOMETRIC_FLAG, value);
   }
 
   void _showAlert(String title, String message) {
@@ -70,30 +63,28 @@ class _BiometricAuthScreenState extends State<BiometricAuthScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Biometric Authentication"),
+        title: const Text("Biometrics"),
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Container(
-            width: double.infinity,
-            height: 50,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              color: const Color(0xFF2986CC),
+      body: ListView(
+        children: [
+          if (!isBiometricsAvailable)
+            const Center(
+              child: Text("Biometrics feature not available on this device"),
             ),
-            child: TextButton(
-              onPressed: _authenticate,
-              child: const CustomText(
-                  text: 'Authenticate with Biometrics',
-                  fontSize: 16,
-                  desiredLineHeight: 24,
-                  fontFamily: 'Inter',
-                  fontWeight: FontWeight.w600,
-                  color: Color(0xFFFFFFFF)),
-            ),
-          ),
-        ),
+          if (isBiometricsAvailable)
+            ListTile(
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text("Turn on Biometrics"),
+                  Switch(
+                    value: isBiometricsOn,
+                    onChanged: _toggleBiometric,
+                  )
+                ],
+              ),
+            )
+        ],
       ),
     );
   }

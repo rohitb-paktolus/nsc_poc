@@ -155,6 +155,10 @@ class MyApp extends StatelessWidget {
                         "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"),
               );
             });
+          case ROUTE_BIOMETRICS:
+            return MaterialPageRoute(builder: (context) {
+              return const SafeArea(child: BiometricAuthScreen());
+            },);
         }
         return null;
       },
