@@ -18,3 +18,4 @@ const String ROUT_MAP_INTEGRATION = "rout_map_integration";
 const String ROUTE_VIDEO = "route_video";
 const String ROUT_QR_CODE = "rout_qr_code";
 const String ROUT_SCAN_QR_CODE = "rout_scan_code";
+const String ROUTE_BIOMETRICS = "route_biometrics";

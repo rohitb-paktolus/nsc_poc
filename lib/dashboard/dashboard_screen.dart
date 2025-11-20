@@ -43,6 +43,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
       color: Colors.red,
       route: ROUT_SCAN_QR_CODE,
     ),
+    DashboardItem(
+      title: "Biometrics",
+      icon: Icons.fingerprint,
+      color: Colors.teal,
+      route: ROUTE_BIOMETRICS,
+    ),
   ];
 
   void _onLogOut() {
