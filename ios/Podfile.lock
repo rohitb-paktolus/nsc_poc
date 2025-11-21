@@ -112,7 +112,7 @@ SPEC CHECKSUMS:
   google_maps_flutter_ios: 0291eb2aa252298a769b04d075e4a9d747ff7264
   GoogleMaps: 0608099d4870cac8754bdba9b6953db543432438
   GoogleUtilities: 00c88b9a86066ef77f0da2fab05f65d7768ed8e1
-  local_auth_darwin: 553ce4f9b16d3fdfeafce9cf042e7c9f77c1c391
+  local_auth_darwin: c3ee6cce0a8d56be34c8ccb66ba31f7f180aaebb
   location: 155caecf9da4f280ab5fe4a55f94ceccfab838f8
   mobile_scanner: 9157936403f5a0644ca3779a38ff8404c5434a93
   permission_handler_apple: 4ed2196e43d0651e8ff7ca3483a069d469701f2d

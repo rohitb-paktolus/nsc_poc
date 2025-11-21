@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
@@ -93,35 +92,56 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
       );
     }
 
-    final nativeAspectRatio = _controller.value.aspectRatio;
-    const double fixedHeight = 250;
-    final width = fixedHeight * nativeAspectRatio;
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Video Player'),
         backgroundColor: Colors.black,
         foregroundColor: Colors.white,
       ),
-      body: Center(
-        child: GestureDetector(
-          onTap: _toggleControls,
-          child: Container(
-            height: fixedHeight,
-            width: width,
-            color: Colors.black,
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                VideoPlayer(_controller),
+      body: Column(
+        children: [
+          const SizedBox(height: 4,),
+          // Video Player - 1/4 of screen height
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.25,
+            child: _buildVideoPlayer(),
+          ),
 
-                // Controls Overlay
-                if (_showControls || !_isPlaying)
-                  Container(
-                    color: Colors.black54,
-                    child: Stack(
-                      children: [
-                        // Center Play/Pause Button
+          // Course Content List - takes remaining 3/4 of screen
+          Expanded(
+            child: _buildVideoContentList(),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildVideoPlayer() {
+    final nativeAspectRatio = _controller.value.aspectRatio;
+    final screenWidth = MediaQuery.of(context).size.width;
+    final videoHeight = MediaQuery.of(context).size.height * 0.25;
+    final videoWidth = videoHeight * nativeAspectRatio;
+
+    return Center(
+      child: GestureDetector(
+        onTap: _toggleControls,
+        child: Container(
+          height: videoHeight,
+          width: videoWidth > screenWidth ? screenWidth : videoWidth,
+          color: Colors.black,
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              VideoPlayer(_controller),
+
+              // Single Controls Overlay - Conditionally shown
+              if (_showControls || !_isPlaying)
+                Container(
+                  color: _showControls ? Colors.black54 : Colors.transparent,
+                  child: Stack(
+                    children: [
+                      // Center Play/Pause Button - Only show when video is not playing OR controls are visible
+                      if (!_isPlaying || _showControls)
                         Positioned(
                           top: 0,
                           bottom: 0,
@@ -130,33 +150,36 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              // Backward Button
-                              _ControlButton(
-                                icon: Icons.replay_10,
-                                onPressed: _seekBackward,
-                              ),
+                              // Backward Button - Only show when controls are visible
+                              if (_showControls)
+                                _ControlButton(
+                                  icon: Icons.replay_10,
+                                  onPressed: _seekBackward,
+                                ),
 
-                              const SizedBox(width: 20),
+                              if (_showControls) const SizedBox(width: 20),
 
-                              // Play/Pause Button
+                              // Play/Pause Button - Always show when video is paused
                               _ControlButton(
                                 icon: _isPlaying ? Icons.pause : Icons.play_arrow,
                                 onPressed: _togglePlayPause,
                                 size: 40,
                               ),
 
-                              const SizedBox(width: 20),
+                              if (_showControls) const SizedBox(width: 20),
 
-                              // Forward Button
-                              _ControlButton(
-                                icon: Icons.forward_10,
-                                onPressed: _seekForward,
-                              ),
+                              // Forward Button - Only show when controls are visible
+                              if (_showControls)
+                                _ControlButton(
+                                  icon: Icons.forward_10,
+                                  onPressed: _seekForward,
+                                ),
                             ],
                           ),
                         ),
 
-                        // Video Progress Indicator at bottom
+                      // Video Progress Indicator at bottom - Only show when controls are visible
+                      if (_showControls)
                         Positioned(
                           bottom: 0,
                           left: 0,
@@ -172,7 +195,8 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                           ),
                         ),
 
-                        // Position and Duration Info
+                      // Position and Duration Info - Only show when controls are visible
+                      if (_showControls)
                         Positioned(
                           top: 10,
                           left: 10,
@@ -184,26 +208,215 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                             ),
                           ),
                         ),
-                      ],
-                    ),
+                    ],
                   ),
-
-                // Auto-hide play button when video is not playing
-                if (!_isPlaying && !_showControls)
-                  Container(
-                    color: Colors.black45,
-                    child: const Center(
-                      child: Icon(
-                        Icons.play_arrow,
-                        color: Colors.white,
-                        size: 60,
-                      ),
-                    ),
-                  ),
-              ],
-            ),
+                ),
+            ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildVideoContentList() {
+    final List<CourseItem> courseItems = [
+      CourseItem(
+        title: 'Estilos personalizados de formularios',
+        type: ContentType.video,
+        duration: '05:34 mins',
+        isCompleted: false,
+      ),
+      CourseItem(
+        title: 'Protección contra cambios de nombres de variables',
+        type: ContentType.video,
+        duration: '07:27 mins',
+        isCompleted: true,
+      ),
+      CourseItem(
+        title: 'Calcular días entre fechas',
+        type: ContentType.video,
+        duration: '03:28 mins',
+        isCompleted: true,
+      ),
+      CourseItem(
+        title: 'Nota de actualización',
+        type: ContentType.article,
+        duration: 'Article',
+        isCompleted: true,
+      ),
+      CourseItem(
+        title: 'Validaciones: 7 días hábiles',
+        type: ContentType.video,
+        duration: '10:14 mins remaining',
+        isCompleted: false,
+        isRemaining: true,
+      ),
+      CourseItem(
+        title: 'Validaciones: Verificar fecha de inicio y fin',
+        type: ContentType.video,
+        duration: '04:38 mins',
+        isCompleted: false,
+      ),
+      CourseItem(
+        title: 'Obtener cantidad de días disponibles',
+        type: ContentType.video,
+        duration: '10:00 mins',
+        isCompleted: false,
+      ),
+      CourseItem(
+        title: 'Validaciones: Empleado tiene suficientes vacaciones',
+        type: ContentType.video,
+        duration: '03:40 mins',
+        isCompleted: false,
+      ),
+      CourseItem(
+        title: 'Nodo Discord: Enviar un mensaje automático',
+        type: ContentType.video,
+        duration: '09:55 mins',
+        isCompleted: false,
+      ),
+    ];
+
+    return Column(
+      children: [
+        // Header Section
+        Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: Colors.grey[50],
+            border: Border(
+              bottom: BorderSide(color: Colors.grey[300]!),
+            ),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              _buildHeaderButton(Icons.play_circle_fill, 'Lectures', '${courseItems.length}'),
+              _buildHeaderButton(Icons.download, 'Downloads', '0'),
+              _buildHeaderButton(Icons.more_horiz, 'More', ''),
+            ],
+          ),
+        ),
+
+        // Content List
+        Expanded(
+          child: ListView.builder(
+            itemCount: courseItems.length,
+            itemBuilder: (context, index) {
+              final item = courseItems[index];
+
+              // Add divider after the 4th item
+              if (index == 4) {
+                return Column(
+                  children: [
+                    const Divider(height: 1, thickness: 1),
+                    _buildListItem(item, index),
+                  ],
+                );
+              }
+
+              return _buildListItem(item, index);
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildHeaderButton(IconData icon, String title, String subtitle) {
+    return Column(
+      children: [
+        Icon(
+          icon,
+          color: Colors.purple[700],
+          size: 24,
+        ),
+        const SizedBox(height: 4),
+        Text(
+          title,
+          style: const TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        Text(
+          subtitle,
+          style: TextStyle(
+            fontSize: 11,
+            color: Colors.grey[600],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildListItem(CourseItem item, int index) {
+    return Container(
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(color: Colors.grey[200]!),
+        ),
+      ),
+      child: ListTile(
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        leading: _buildLeadingIcon(item),
+        title: Text(
+          item.title,
+          style: TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
+            decoration: item.isCompleted ? TextDecoration.lineThrough : TextDecoration.none,
+            color: item.isCompleted ? Colors.grey[600] : Colors.black,
+          ),
+        ),
+        subtitle: Row(
+          children: [
+            Icon(
+              item.type == ContentType.video ? Icons.play_circle_outline : Icons.article_outlined,
+              size: 14,
+              color: Colors.grey[600],
+            ),
+            const SizedBox(width: 4),
+            Text(
+              item.duration,
+              style: TextStyle(
+                fontSize: 12,
+                color: item.isRemaining ? Colors.purple[700] : Colors.grey[600],
+                fontWeight: item.isRemaining ? FontWeight.bold : FontWeight.normal,
+              ),
+            ),
+          ],
+        ),
+        trailing: item.isCompleted
+            ? Icon(
+          Icons.check_circle,
+          color: Colors.purple[700],
+          size: 20,
+        )
+            : null,
+        onTap: () {
+          // Handle item tap
+        },
+      ),
+    );
+  }
+
+  Widget _buildLeadingIcon(CourseItem item) {
+    if (item.isCompleted) {
+      return Icon(
+        Icons.check_circle,
+        color: Colors.purple[700],
+        size: 24,
+      );
+    }
+
+    return Checkbox(
+      value: item.isCompleted,
+      onChanged: (value) {
+        // Handle checkbox change
+      },
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(2),
       ),
     );
   }
@@ -246,4 +459,25 @@ class _ControlButton extends StatelessWidget {
       highlightColor: Colors.transparent,
     );
   }
+}
+
+enum ContentType {
+  video,
+  article,
+}
+
+class CourseItem {
+  final String title;
+  final ContentType type;
+  final String duration;
+  final bool isCompleted;
+  final bool isRemaining;
+
+  CourseItem({
+    required this.title,
+    required this.type,
+    required this.duration,
+    this.isCompleted = false,
+    this.isRemaining = false,
+  });
 }
