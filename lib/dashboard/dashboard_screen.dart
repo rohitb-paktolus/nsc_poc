@@ -75,7 +75,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 Prefs.clear();
                 Navigator.of(context).pushNamedAndRemoveUntil(
                   ROUT_LOGIN_EMAIL,
-                      (route) => false,
+                  (route) => false,
                 );
               },
               child: const Text(
@@ -125,8 +125,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
-                  const Color(0xFF2986CC).withOpacity(0.9),
-                  const Color(0xFF2986CC).withOpacity(0.7),
+                  const Color(0xFF2986CC).withValues(alpha: 0.9),
+                  const Color(0xFF2986CC).withValues(alpha: 0.7),
                 ],
               ),
               borderRadius: const BorderRadius.only(
@@ -162,7 +162,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   desiredLineHeight: 20,
                   fontFamily: 'Inter',
                   fontWeight: FontWeight.w400,
-                  color: Colors.white.withOpacity(0.9),
+                  color: Colors.white.withValues(alpha: 0.9),
                 ),
               ],
             ),
@@ -207,7 +207,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 color: Colors.white,
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.05),
+                    color: Colors.black.withValues(alpha: 0.05),
                     blurRadius: 8,
                     offset: const Offset(0, 2),
                   ),
@@ -293,10 +293,10 @@ class _FeatureCard extends StatelessWidget {
             children: [
               // Icon Container
               Container(
-                width: 60,
-                height: 60,
+                width: 50,
+                height: 50,
                 decoration: BoxDecoration(
-                  color: color.withOpacity(0.1),
+                  color: color.withValues(alpha: 0.1),
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
